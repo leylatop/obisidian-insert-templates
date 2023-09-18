@@ -7,7 +7,12 @@ ROOT_DIR="$(pwd)"
 ID=$(grep -o '"id": *"[^"]*"' "manifest.json" | sed 's/"id": *"\([^"]*\)"/\1/')
 
 # 复制 main.js 和 manifest.json 文件到目标路径
-cp "$ROOT_DIR/main.js" "/Users/modao/Desktop/GitHub/note/.obsidian/plugins/$ID/"
-cp "$ROOT_DIR/manifest.json" "/Users/modao/Desktop/GitHub/note/.obsidian/plugins/$ID/"
+TARGET_DIR="/Users/modao/Desktop/GitHub/note/.obsidian/plugins/$ID"
+if [ ! -d "$TARGET_DIR" ]; then
+  mkdir "$TARGET_DIR"
+fi
+
+cp "$ROOT_DIR/main.js" "$TARGET_DIR"
+cp "$ROOT_DIR/manifest.json" "$TARGET_DIR"
 
 echo "复制成功！"
