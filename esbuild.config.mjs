@@ -10,6 +10,22 @@ if you want to view the source, please visit the github repository of this plugi
 `;
 
 const prod = (process.argv[2] === "production");
+const plugins = [{
+  name: 'watcher-plugin',
+  setup(build) {
+    build.onEnd(async result => {
+      // 每次编译成功后，执行.ci/copy-script-to-workspace.sh 脚本
+      const { exec } = await import('child_process');
+      exec('sh .ci/copy-script-to-workspace.sh', (err, stdout, stderr) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        console.log('复制成功！');
+      })
+    });
+  },
+}];
 
 const context = await esbuild.context({
 	banner: {
@@ -38,6 +54,7 @@ const context = await esbuild.context({
 	sourcemap: prod ? false : "inline",
 	treeShaking: true,
 	outfile: "main.js",
+  plugins
 });
 
 if (prod) {

@@ -2,16 +2,16 @@ import moment from 'moment';
 
 import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, setIcon, Setting } from 'obsidian';
 
-import {
-	isModifier,
-	KeyChord,
-	keySequenceEqual,
-	codeToString,
-	keySequencePartiallyEqual,
-} from "keys";
+// import {
+// 	isModifier,
+// 	KeyChord,
+// 	keySequenceEqual,
+// 	codeToString,
+// 	keySequencePartiallyEqual,
+// } from "keys";
 
-import { HotkeyManager } from "hotkey-manager";
-import { ChordListener } from "./src/chord_listener";
+// import { HotkeyManager } from "hotkey-manager";
+// import { ChordListener } from "./src/chord_listener";
 import { InsertTemplateSetting, INSERT_TEMPLATES_SETTINGS } from './constants';
 
 interface InsertTemplateSettings {
@@ -20,7 +20,6 @@ interface InsertTemplateSettings {
 
 export default class MyPlugin extends Plugin {
 	settings: InsertTemplateSettings;
-
 	async onload() {
 		await this.loadSettings();
 
