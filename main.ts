@@ -95,7 +95,7 @@ export default class MyPlugin extends Plugin {
     // 注册一个键盘事件，当按下键盘时，触发事件
     this.registerDomEvent(document, 'keydown', (evt: KeyboardEvent) => {
       // 当按下control + i时，将`hello world` 插入到编辑器中
-      if (evt.ctrlKey && evt.key === 'i') {
+      if (evt.ctrlKey && evt.key === '1') {
         const editor = this.app.workspace.getActiveViewOfType(MarkdownView)?.editor;
 
         // 将 editor 的鼠标焦点移动到整个文档的最前面
